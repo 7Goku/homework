@@ -1,0 +1,67 @@
+<html><head>
+  <style>
+  #root {
+  align: center;}
+  
+  .sum {
+  outline: thin solid;}
+  
+  table th {text-align:left;}
+  </style>
+  </head>
+  
+  <body>
+  <div id="root">
+  <table id="tblInput">
+  <tbody><tr>
+    <td>
+      <label for="txtInputExpense">Enter Expense Type</label>
+    </td>
+    <td>
+      <input id="txtInputExpense" type="text" value="">
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <label for="txtInputAmount">Enter Amount</label>
+    </td>
+    <td>
+      <input id="txtInputAmount" type="text" value="">
+    </td>
+  </tr>
+  <tr>
+    <td align="center" colspan="2">
+      <button id="btnAddExpense">Add Expense</button>
+    </td>
+  </tr>
+  </tbody></table>
+  </div>
+  <br>
+  <div id="display">
+  </div>
+  
+  
+  <script>
+  var btnSubmit = document.getElementById("btnAddExpense");
+  var expenseArray = [];
+  
+  btnSubmit.addEventListener("click", ()=>{
+                        
+                        var expenseName = document.getElementById("txtInputExpense").value;
+                        var expenseAmount = document.getElementById("txtInputAmount").value;
+                        var totalExpense = 0;
+                        expenseArray.push({"name": expenseName, "amount":expenseAmount});
+                        var stringexpense = "<table><tr><th>Expense</th><th>Amount</th></tr>";
+                        expenseArray.forEach((item,index)=>{
+                                          stringexpense += "<tr><td>"+ item["name"] + "</td><td>" + item["amount"] + "</td></tr>";
+                                          totalExpense +=parseInt(item["amount"]);
+                                          }
+                        );
+                        stringexpense += "<tr class=\"sum\"><td>Total Expense</td><td>" + totalExpense + "</td></tr></table>"
+                        document.getElementById("display").innerHTML = stringexpense;
+                        
+                      })
+  </script>
+  
+  
+  </body></html>
